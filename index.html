@@ -6,14 +6,52 @@
     <link rel= "stylesheet" href= "./css/mdui.css" type= "text/css">
     <script type= "text/javascript" src= "./js/mdui.js"></script>
   </head>
+  <script>
+    ar $ = mdui.$;
+var inst = new mdui.Drawer('#drawer');
+
+// method
+$('#open').on('click', function () {
+  inst.open();
+});
+
+$('#close').on('click', function () {
+  inst.close();
+});
+
+$('#toggle').on('click', function () {
+  inst.toggle();
+});
+
+$('#getState').on('click', function () {
+  mdui.alert(inst.getState());
+});
+
+// event
+$('#drawer').on('open.mdui.drawer', function () {
+  console.log('open');
+});
+
+$('#drawer').on('opened.mdui.drawer', function () {
+  console.log('opened');
+});
+
+$('#drawer').on('close.mdui.drawer', function () {
+  console.log('close');
+});
+
+$('#drawer').on('closed.mdui.drawer', function () {
+  console.log('closed');
+});
+</script>
   <body
     class="
     mdui-drawer-body-left"      
   >
     <div class="mdui-appbar mdui-appbar-fixed mdui-appbar-inset">
     <div class="mdui-toolbar mdui-color-theme">
-    <a href="javascript:;" class="mdui-btn mdui-btn-icon"">
-      <i class="mdui-icon material-icons">menu</i>
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon">
+      <i class="mdui-icon material-icons">menu</i>toggle
     </a>
     <a href="javascript:;" class="mdui-typo-headline">首页</a>
   </div>
@@ -21,7 +59,7 @@
     <ul class="mdui-list">
       <li class="mdui-list-item mdui-ripple">
         <i class="mdui-icon material-icons">home</i>
-        <div class="mdui-list-item-content" onclick = "window.open('original-yuanzie.github.io','_self')">首页</div>
+        <div class="mdui-list-item-content" onclick = "window.open('original-yuanzie.github.io','_self')">主页</div>
       </li>
     </ul>
   </div>
