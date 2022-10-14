@@ -1,0 +1,39 @@
+---
+layout: compress
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include header.html %}
+</head>
+<body class="doc-body">
+  {% include skip.html %}
+
+  {% include nav-toolbar.html %}
+
+  {% include nav-navdrawer.html %}
+
+  {% include page-jumbotron.html %}
+
+  <main class="doc-main px-lg-3">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-xl-9">
+          <div class="bd-content mb-5">
+            {{ content }}
+          </div>
+        </div>
+
+        {% if page.toc %}
+          <div class="col-xl-3 d-none d-xl-block">
+            {{ content | toc_only }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </main>
+
+  {% include footer.html %}
+</body>
+</html>
