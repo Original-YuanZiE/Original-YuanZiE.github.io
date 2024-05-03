@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-cn" class="mdui-theme-auto">
+    <head>
+        <meta charset="utf-8"/>
+        <title>元子鹅の网站</title>
+        <link rel="stylesheet" href="./Theme/mdui.css">
+        <link href="./Theme/icon.css" rel="stylesheet">
+        <link href="./Theme/icon-outlined.css" rel="stylesheet">
+        <link href="./Theme/icon-rounded.css" rel="stylesheet">
+        <script src="./Theme/mdui.global.js"></script>
+    </head>
+    <body>
+        <mdui-layout>
+            <mdui-top-app-bar>
+                <mdui-button-icon icon="menu" onclick="navdraOC()"></mdui-button-icon>
+                <mdui-top-app-bar-title>主页</mdui-top-app-bar-title>
+            </mdui-top-app-bar>
+          
+            <mdui-navigation-drawer id="navdra" close-on-overlay-click close-on-esc>
+                <mdui-list>
+                    <mdui-list-item icon="home" rounded active>主页</mdui-list-item>
+                    <mdui-list-item icon="text_snippet" rounded href="./article.html">文章</mdui-list-item>
+                </mdui-list>
+            </mdui-navigation-drawer>
+          
+            <mdui-layout-main style="min-height: 98dvh;display: flex;flex-direction: column;">
+                <div style="display: flex;flex-direction: row;justify-content: center;min-width: 100%;">    
+                    <mdui-card variant="elevated" style="width: 85%;height: 500px;" clickable>
+                        <br/><br/>
+                        <div style="display: flex;flex-direction: row;justify-content: center;">
+                            <img src="./Files/YuanZiE.png" style="height: 100px;width: 100px;">
+                        </div>
+                        <div style="display: flex;flex-direction: row;justify-content: center;text-align: center;">
+                            <h1>欢迎来到 元子鹅の网站</h1>
+                        </div>
+                        <div style="display: flex;flex-direction: row;justify-content: center;text-align: center;">
+                            <p1>网站主题升级到MD3啦，感谢你一直以来的支持！<br/>以后常来看看，说不定能发现什么好玩的呢<br/><br/>什么？你说~网站加载太慢了？！<br/>可是我也没钱呢，嘿嘿</p1>
+                        </div>
+                    </mdui-card>
+                </div>
+                <br/><br/>
+                <div style="display: flex;flex-direction: row;justify-content: center;min-width: 100%;">    
+                    <mdui-card variant="elevated" style="width: 40%;height: 500px;margin-right: 5%;" clickable onclick="window.open('https://space.bilibili.com/2120993834?spm_id_from=333.1007.0.0')">
+                        <br/><br/>
+                        <div style="display: flex;flex-direction: row;justify-content: center;">
+                            <img src="./Files/YZE_Bili.png" style="height: 100px;width: 100px;">
+                        </div>
+                        <div style="display: flex;flex-direction: row;justify-content: center;text-align: center;">
+                            <h1>我的 Bilibili 账号</h1>
+                        </div>
+                        <div style="display: flex;flex-direction: row;justify-content: center;text-align: center;">
+                            <p1>点击卡片以跳转</p1>
+                        </div>
+                    </mdui-card>
+                    <mdui-card variant="elevated" style="width: 40%;height: 500px;" clickable>
+                        <br/><br/>
+                        <div style="display: flex;flex-direction: row;justify-content: center;">
+                            <img src="./Files/Tips.png" style="height: 100px;width: 100px;">
+                        </div>
+                        <div style="display: flex;flex-direction: row;justify-content: center;text-align: center;">
+                            <h1>提示</h1>
+                        </div>
+                        <div style="display: flex;flex-direction: row;justify-content: center;text-align: center;">
+                            <p1>单击左上角的 “菜单” 图标可展开/关闭侧边栏哦</p1>
+                        </div>
+                    </mdui-card>
+                </div>
+            </mdui-layout-main>
+        </mdui-layout>
+
+        <script>
+            function navdraOC() {
+                var oc;
+                oc = document.getElementById("navdra").open
+                if (oc == true) {
+                    document.getElementById("navdra").open = false;
+                } else if (oc == false) {
+                    document.getElementById("navdra").open = true;
+                }
+            }
+        </script>
+    </body>    
+
+</html>

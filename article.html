@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-cn" class="mdui-theme-auto">
+    <head>
+        <meta charset="utf-8"/>
+        <title>元子鹅の网站 - 文章</title>
+        <link rel="stylesheet" href="./Theme/mdui.css">
+        <link href="./Theme/icon.css" rel="stylesheet">
+        <link href="./Theme/icon-outlined.css" rel="stylesheet">
+        <link href="./Theme/icon-rounded.css" rel="stylesheet">
+        <script src="./Theme/mdui.global.js"></script>
+    </head>
+    <body>
+        <mdui-layout>
+            <mdui-top-app-bar>
+                <mdui-button-icon icon="menu" onclick="navdraOC()"></mdui-button-icon>
+                <mdui-top-app-bar-title>文章</mdui-top-app-bar-title>
+            </mdui-top-app-bar>
+          
+            <mdui-navigation-drawer id="navdra" close-on-overlay-click close-on-esc>
+                <mdui-list>
+                    <mdui-list-item icon="home" rounded href="./index.html">主页</mdui-list-item>
+                    <mdui-list-item icon="text_snippet" rounded active>文章</mdui-list-item>
+                </mdui-list>
+            </mdui-navigation-drawer>
+  
+            <mdui-layout-main style="min-height: 98dvh;display: flex;flex-direction: column;">
+                <div style="display: flex;flex-direction: row;justify-content: center;min-width: 100%;">
+                    <!--    
+                    <mdui-card variant="elevated" style="width: 85%;height: 600px;" clickable>
+                        <div style="display: flex;flex-direction: row;justify-content: center;">
+                            <img src="./Files/YuanZiE.png" style="height: 400px;width: 100%;object-fit: cover;">
+                        </div>
+                        <div style="display: flex;flex-direction: row;justify-content: center;text-align: center;">
+                            <h1>欢迎来到 元子鹅の网站</h1>
+                        </div>
+                        <div style="display: flex;flex-direction: row;justify-content: center;text-align: center;">
+                            <p1>网站主题升级到MD3啦，感谢你一直以来的支持！<br/>以后常来看看，说不定能发现什么好玩的呢<br/><br/>什么？你说~网站加载太慢了？！<br/>可是我也没钱呢，嘿嘿</p1>
+                        </div>
+                    </mdui-card>
+                    -->
+                    <p1>这里什么都没有哦~</p1>
+                </div>
+                <br/><br/>
+            </mdui-layout-main>
+            
+        </mdui-layout>
+
+        <script>
+            function navdraOC() {
+                var oc;
+                oc = document.getElementById("navdra").open
+                if (oc == true) {
+                    document.getElementById("navdra").open = false;
+                } else if (oc == false) {
+                    document.getElementById("navdra").open = true;
+                }
+            }
+        </script>
+    </body>    
+
+</html>
