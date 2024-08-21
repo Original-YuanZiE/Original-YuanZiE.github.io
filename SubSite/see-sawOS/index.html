@@ -11,11 +11,6 @@
     </head>
     <body>
         <mdui-layout>
-            <mdui-top-app-bar>
-                <mdui-button-icon icon="menu" onclick="navdraOC()"></mdui-button-icon>
-                <mdui-top-app-bar-title>see-sawOS</mdui-top-app-bar-title>
-            </mdui-top-app-bar>
-          
             <mdui-navigation-rail value="Detail" alignment="center">
                 <mdui-navigation-rail-item href="index-now.html" icon="watch_later--outlined" value="Detail">详情</mdui-navigation-rail-item>
                 <mdui-navigation-rail-item href="index-timer.html" icon="timer--outlined" value="Download">下载</mdui-navigation-rail-item>
@@ -29,15 +24,7 @@
         </mdui-layout>
 
         <script>
-            function navdraOC() {
-                var oc;
-                oc = document.getElementById("navdra").open
-                if (oc == true) {
-                    document.getElementById("navdra").open = false;
-                } else if (oc == false) {
-                    document.getElementById("navdra").open = true;
-                }
-            }
+
         </script>
     </body>    
 
