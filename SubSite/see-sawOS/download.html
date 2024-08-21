@@ -8,19 +8,10 @@
         <link href="./Theme/icon-outlined.css" rel="stylesheet">
         <link href="./Theme/icon-rounded.css" rel="stylesheet">
         <script src="./Theme/mdui.global.js"></script>
-        <style>
-            mdui-navigation-rail::before {
-                content: "";
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                backdrop-filter: blur(30px);
-            }
-        </style>
     </head>
-    <body style="background-image: url(./card.png); background-repeat:no-repeat;background-position:center center;background-size: cover;">
-        <mdui-layout style="background-color: rgba(0, 0, 0, 0.5)">
-            <mdui-navigation-rail value="Detail" alignment="center" style="background-color:rgba(0, 0, 0, 0.5)">
+    <body>
+        <mdui-layout>
+            <mdui-navigation-rail value="Download" alignment="center">
                 <mdui-navigation-rail-item href="index-now.html" icon="home--outlined" value="Detail">详情</mdui-navigation-rail-item>
                 <mdui-navigation-rail-item href="index-timer.html" icon="download--outlined" value="Download">下载</mdui-navigation-rail-item>
             </mdui-navigation-rail>
@@ -35,7 +26,6 @@
         <script>
 
         </script>
-        
     </body>    
 
 </html>
