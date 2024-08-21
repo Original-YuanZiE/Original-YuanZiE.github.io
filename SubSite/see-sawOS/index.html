@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cn" class="mdui-theme-auto">
+    <head>
+        <meta charset="utf-8"/>
+        <title>see-sawOS 官网 - 元子鹅の网站</title>
+        <link rel="stylesheet" href="./Theme/mdui.css">
+        <link href="./Theme/icon.css" rel="stylesheet">
+        <link href="./Theme/icon-outlined.css" rel="stylesheet">
+        <link href="./Theme/icon-rounded.css" rel="stylesheet">
+        <script src="./Theme/mdui.global.js"></script>
+    </head>
+    <body>
+        <mdui-layout>
+            <mdui-top-app-bar>
+                <mdui-button-icon icon="menu" onclick="navdraOC()"></mdui-button-icon>
+                <mdui-top-app-bar-title>see-sawOS</mdui-top-app-bar-title>
+            </mdui-top-app-bar>
+          
+            <mdui-navigation-drawer id="navdra" close-on-overlay-click close-on-esc>
+                <mdui-list>
+                    <mdui-list-item icon="home" rounded active>介绍</mdui-list-item>
+                    <mdui-list-item icon="text_snippet" rounded href="./article.html">下载</mdui-list-item>
+                </mdui-list>
+            </mdui-navigation-drawer>
+          
+            <mdui-layout-main style="min-height: 98dvh;display: flex;flex-direction: column;">
+                <div style="display: flex;flex-direction: row;justify-content: center;min-width: 100%;">    
+                    
+                </div>
+            </mdui-layout-main>
+        </mdui-layout>
+
+        <script>
+            function navdraOC() {
+                var oc;
+                oc = document.getElementById("navdra").open
+                if (oc == true) {
+                    document.getElementById("navdra").open = false;
+                } else if (oc == false) {
+                    document.getElementById("navdra").open = true;
+                }
+            }
+        </script>
+    </body>    
+
+</html>
