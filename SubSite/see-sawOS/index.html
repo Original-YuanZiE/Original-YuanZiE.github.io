@@ -21,21 +21,46 @@
     <body style="background-image: url(https://original-yuanzie.github.io/SubSite/see-sawOS/wxs.png); background-repeat:no-repeat;background-position:center center;background-size: cover;">
         <mdui-layout style="background-color: rgba(0, 0, 0, 0.5)">
             <mdui-navigation-rail value="Detail" alignment="center" style="background-color:rgba(0, 0, 0, 0.5)">
-                <mdui-navigation-rail-item href="index.html" icon="home--outlined" value="Detail">主页</mdui-navigation-rail-item>
-                <mdui-navigation-rail-item href="article.html" icon="article--outlined" value="Article">安装教程</mdui-navigation-rail-item>
-                <mdui-navigation-rail-item href="" icon="download--outlined" value="Download">下载</mdui-navigation-rail-item>
+                <mdui-navigation-rail-item href="index.html" icon="home--outlined" value="Detail" style="color: white;">主页</mdui-navigation-rail-item>
+                <mdui-navigation-rail-item href="article.html" icon="article--outlined" value="Article" style="color: white;">安装教程</mdui-navigation-rail-item>
+                <mdui-navigation-rail-item onclick="openSettingsDialog()" icon="download--outlined" value="Download" style="color: white;">下载</mdui-navigation-rail-item>
             </mdui-navigation-rail>
           
             <mdui-layout-main style="min-height: 98dvh;display: flex;flex-direction: column;align-items: center;">
                 <div style="display: flex;justify-content: center;min-width: 100%;flex-direction: column;align-items: center; min-height: 98dvh;">    
-                    <h2 style="font-size: 60px;">Original see-sawOS</h2>
-                    <p1 style="font-size: 20px;">基于 YuanZiEOS 的定制系统</p1>
+                    <h2 style="font-size: 60px;color: white;">Original see-sawOS</h2>
+                    <p1 style="font-size: 20px;color: white;">基于 YuanZiEOS 的定制系统</p1>
                 </div>
             </mdui-layout-main>
         </mdui-layout>
 
+        <mdui-dialog headline="下载镜像" close-on-overlay-click id="download-dialog">
+            <br/>
+            <p1>你可以选择以下下载方式：<br/><br/></p1>
+            <div style="display: flex;flex-direction: row;align-items: center;">
+                <div style="width: 50%; display: flex;flex-direction: column;align-items: center;height: 50px;margin-top: 10px;margin-bottom: 10px;" onclick="openNewTab('https://1drv.ms/u/s!Au_99bkXRqSp_E7TmBuOnZeDy63Y?e=amjehb')">
+                    <mdui-icon name='cloud--outlined'></mdui-icon>
+                    <p1>OneDrive</p1>
+                </div>
+                <div style="width: 50%; display: flex;flex-direction: column;align-items: center;height: 50px;margin-top: 10px;margin-bottom: 10px;" onclick="openNewTab('https://1drv.ms/u/s!Au_99bkXRqSp_E7TmBuOnZeDy63Y?e=amjehb')">
+                    <mdui-icon name='123--outlined'></mdui-icon>
+                    <p1>123 云盘</p1>
+                </div>
+                </a>
+            </div>
+            <mdui-button onclick="OK()">完成</mdui-button>
+        </mdui-dialog>
+        
         <script>
-
+            function openSettingsDialog() {
+                document.getElementById("download-dialog").open = true;
+            }
+            function OK() {
+                document.getElementById("download-dialog").open = false;
+            }
+            function openNewTab(url) {
+                window.open(url, "_blank");
+            }
         </script>
         
     </body>    
