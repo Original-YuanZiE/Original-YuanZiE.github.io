@@ -8,25 +8,16 @@
         <link href="./Theme/icon-outlined.css" rel="stylesheet">
         <link href="./Theme/icon-rounded.css" rel="stylesheet">
         <script src="./Theme/mdui.global.js"></script>
+        <mdui-navigation-rail value="Article" alignment="center">
+            <mdui-navigation-rail-item href="index.html" icon="home--outlined" value="Detail">主页</mdui-navigation-rail-item>
+            <mdui-navigation-rail-item href="article.html" icon="article--outlined" value="Article">安装教程</mdui-navigation-rail-item>
+            <mdui-navigation-rail-item href="" icon="download--outlined" value="Download">下载</mdui-navigation-rail-item>
+        </mdui-navigation-rail>
     </head>
-    <body style=>
-        <mdui-layout>
-            <mdui-navigation-rail value="Article" alignment="center">
-                <mdui-navigation-rail-item href="index.html" icon="home--outlined" value="Detail">主页</mdui-navigation-rail-item>
-                <mdui-navigation-rail-item href="article.html" icon="article--outlined" value="Article">安装教程</mdui-navigation-rail-item>
-                <mdui-navigation-rail-item href="" icon="download--outlined" value="Download">下载</mdui-navigation-rail-item>
-            </mdui-navigation-rail>
-          
-            <mdui-layout-main style="min-height: 98dvh;display: flex;flex-direction: column;align-items: center;">
-                <div style="display: flex;justify-content: center;min-width: 100%;flex-direction: column;align-items: center; min-height: 98dvh;">    
-                    
-                </div>
-        </mdui-layout>
-
-        <script>
-
-        </script>
-        
-    </body>    
-
+    <body style="min-height: 98dvh;display: flex;flex-direction: column;">
+        <mdui-card variant="elevated" style="width: 80%;display: flex;flex-direction: row;justify-content: center;" clickable>
+            <h2 style="font-size: 40px;">系统安装教程</h2>
+            <p1 style="font-size: 20px;"><br/>1.安装前的准备<br/><br/>请提前备份好所有数据！<br/><br/>确认你的电脑满足最低配置要求：<br/>CPU：6th Gen Intel Core i5 或其它同性能 CPU<br/>RAM：4GB DDR4<br/>存储：剩余至少 80GB 的空间<br/>GPU：Intel UHD Graphics 或其它核显<br/>屏幕：1920 × 1080 @ 30Hz<br/>操作方式：键鼠，可选触摸<br/><br/>你需要一个 Windows PE 来辅助 see-sawOS 的安装</p1>
+        </mdui-card>
+    </body>
 </html>
