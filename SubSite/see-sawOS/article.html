@@ -8,19 +8,10 @@
         <link href="./Theme/icon-outlined.css" rel="stylesheet">
         <link href="./Theme/icon-rounded.css" rel="stylesheet">
         <script src="./Theme/mdui.global.js"></script>
-        <style>
-            mdui-navigation-rail::before {
-                content: "";
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                backdrop-filter: blur(30px);
-            }
-        </style>
     </head>
-    <body style="background-image: url(./card.png); background-repeat:no-repeat;background-position:center center;background-size: cover;">
-        <mdui-layout style="background-color: rgba(0, 0, 0, 0.5)">
-            <mdui-navigation-rail value="Detail" alignment="center" style="background-color:rgba(0, 0, 0, 0.5)">
+    <body style=>
+        <mdui-layout>
+            <mdui-navigation-rail value="Article" alignment="center">
                 <mdui-navigation-rail-item href="index.html" icon="home--outlined" value="Detail">主页</mdui-navigation-rail-item>
                 <mdui-navigation-rail-item href="article.html" icon="article--outlined" value="Article">安装教程</mdui-navigation-rail-item>
                 <mdui-navigation-rail-item href="" icon="download--outlined" value="Download">下载</mdui-navigation-rail-item>
@@ -28,10 +19,8 @@
           
             <mdui-layout-main style="min-height: 98dvh;display: flex;flex-direction: column;align-items: center;">
                 <div style="display: flex;justify-content: center;min-width: 100%;flex-direction: column;align-items: center; min-height: 98dvh;">    
-                    <h2 style="font-size: 60px;">Original see-sawOS</h2>
-                    <p1 style="font-size: 20px;">基于 YuanZiEOS 的定制系统</p1>
+                    
                 </div>
-            </mdui-layout-main>
         </mdui-layout>
 
         <script>
