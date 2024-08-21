@@ -11,7 +11,7 @@
         <mdui-navigation-rail value="Article" alignment="center">
             <mdui-navigation-rail-item href="index.html" icon="home--outlined" value="Detail">主页</mdui-navigation-rail-item>
             <mdui-navigation-rail-item href="article.html" icon="article--outlined" value="Article">安装教程</mdui-navigation-rail-item>
-            <mdui-navigation-rail-item href="" icon="download--outlined" value="Download">下载</mdui-navigation-rail-item>
+            <mdui-navigation-rail-item onclick="openSettingsDialog()" icon="download--outlined" value="Download">下载</mdui-navigation-rail-item>
         </mdui-navigation-rail>
     </head>
     <body style="display: flex;flex-direction: row;justify-content: center;">
@@ -25,5 +25,33 @@
 
             </div>
         </mdui-card>
+        <mdui-dialog headline="下载镜像" close-on-overlay-click id="download-dialog">
+            <br/>
+            <p1>你可以选择以下下载方式：<br/><br/></p1>
+            <div style="display: flex;flex-direction: row;align-items: center;">
+                <div style="width: 50%; display: flex;flex-direction: column;align-items: center;height: 50px;margin-top: 10px;margin-bottom: 10px;" onclick="openNewTab('https://1drv.ms/u/s!Au_99bkXRqSp_E7TmBuOnZeDy63Y?e=amjehb')">
+                    <mdui-icon name='cloud--outlined'></mdui-icon>
+                    <p1>OneDrive</p1>
+                </div>
+                <div style="width: 50%; display: flex;flex-direction: column;align-items: center;height: 50px;margin-top: 10px;margin-bottom: 10px;" onclick="openNewTab('https://www.123pan.com/s/d2TyVv-odeaH')">
+                    <mdui-icon name='123--outlined'></mdui-icon>
+                    <p1>123 云盘</p1>
+                </div>
+                </a>
+            </div>
+            <mdui-button onclick="OK()">完成</mdui-button>
+        </mdui-dialog>
+        
+        <script>
+            function openSettingsDialog() {
+                document.getElementById("download-dialog").open = true;
+            }
+            function OK() {
+                document.getElementById("download-dialog").open = false;
+            }
+            function openNewTab(url) {
+                window.open(url, "_blank");
+            }
+        </script>
     </body>
 </html>
