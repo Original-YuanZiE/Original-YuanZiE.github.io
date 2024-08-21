@@ -14,10 +14,16 @@
             <mdui-navigation-rail-item href="" icon="download--outlined" value="Download">下载</mdui-navigation-rail-item>
         </mdui-navigation-rail>
     </head>
-    <body style="min-height: 98dvh;display: flex;flex-direction: column;">
-        <mdui-card variant="elevated" style="width: 80%;display: flex;flex-direction: row;justify-content: center;" clickable>
-            <h2 style="font-size: 40px;">系统安装教程</h2>
-            <p1 style="font-size: 20px;"><br/>1.安装前的准备<br/><br/>请提前备份好所有数据！<br/><br/>确认你的电脑满足最低配置要求：<br/>CPU：6th Gen Intel Core i5 或其它同性能 CPU<br/>RAM：4GB DDR4<br/>存储：剩余至少 80GB 的空间<br/>GPU：Intel UHD Graphics 或其它核显<br/>屏幕：1920 × 1080 @ 30Hz<br/>操作方式：键鼠，可选触摸<br/><br/>你需要一个 Windows PE 来辅助 see-sawOS 的安装</p1>
+    <body style="display: flex;flex-direction: row;justify-content: center;">
+        <mdui-card variant="elevated" style="width: 80%;display: flex;flex-direction: row; margin-top: 10dvh;" clickable>
+            <div style="display: flex;flex-direction: column;">
+                <h2 style="font-size: 40px; margin-left: 30px;margin-top: 30px;">系统安装教程</h2>
+                <p1 style="font-size: 20px;margin-left: 30px;margin-bottom: 30px;line-height: 40px;margin-right: 30px;"><br/>1.安装前的准备<br/><br/>*请提前备份好所有数据！*<br/><br/>确认你的电脑是否满足最低配置要求：<br/>·CPU：6th Gen Intel Core i5 或其它同性能 CPU<br/>·RAM：4GB DDR4<br/>·存储：剩余至少 80GB 的空间<br/>·GPU：Intel UHD Graphics 或其它核显<br/>·屏幕：1920 × 1080 @ 30Hz<br/>·操作方式：键鼠，可选触摸<br/><br/>你需要一个 Windows PE 来辅助 see-sawOS 的安装，请准备一个 8GB 以上的可移动存储设备，并备份好数据，前往以下链接下载 FirPE：</p1>
+                <a href="https://www.firpe.cn/" style="font-size: 20px;margin-left: 30px;margin-bottom: 30px;line-height: 40px;margin-right: 30px;">下载 FirPE</a>
+                <p1 style="font-size: 20px;margin-left: 30px;margin-bottom: 30px;line-height: 40px;margin-right: 30px;">*再提醒一次，备份好可移动存储设备的数据！*<br/>按照网页上的教程制作好 Windows PE 启动盘后，便可以正式安装系统了</p1>
+                <p1 style="font-size: 20px;margin-left: 30px;margin-bottom: 30px;line-height: 40px;margin-right: 30px;"><br/>2.安装系统<br/><br/>将电脑关机，插入 Windows PE 启动盘，按下电源键开机并狂按进入 UEFI BIOS 的快捷键（一般为 F2 或 DEL，具体可以在网上搜索：品牌 + “进入 BIOS”），将第一启动项设为启动盘（具体设置方法也可以在网上查询），保存并退出，等待 Windows PE 启动<br/></p1>
+
+            </div>
         </mdui-card>
     </body>
 </html>
