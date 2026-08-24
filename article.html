@@ -1,78 +1,90 @@
 <!DOCTYPE html>
-<html lang="zh-cn" class="mdui-theme-auto">
-    <head>
-        <meta charset="utf-8"/>
-        <title>元子鹅の网站 - 文章</title>
-        <link rel="stylesheet" href="./Theme/mdui.css">
-        <link href="./Theme/icon.css" rel="stylesheet">
-        <link href="./Theme/icon-outlined.css" rel="stylesheet">
-        <link href="./Theme/icon-rounded.css" rel="stylesheet">
-        <script src="./Theme/mdui.global.js"></script>
-    </head>
-    <body>
-        <mdui-layout>
-            <mdui-top-app-bar>
-                <mdui-button-icon icon="menu" onclick="navdraOC()"></mdui-button-icon>
-                <mdui-top-app-bar-title>文章</mdui-top-app-bar-title>
-            </mdui-top-app-bar>
-          
-            <mdui-navigation-drawer id="navdra" close-on-overlay-click close-on-esc>
-                <mdui-list>
-                    <mdui-list-item icon="home" rounded href="./index.html">主页</mdui-list-item>
-                    <mdui-list-item icon="text_snippet" rounded active>文章</mdui-list-item>
-                </mdui-list>
-            </mdui-navigation-drawer>
-  
-            <mdui-layout-main style="min-height: 98dvh;display: flex;flex-direction: column;">
-                <div style="display: flex;flex-direction: row;justify-content: center;min-width: 100%;">
-                    <!--    
-                    <mdui-card variant="elevated" style="width: 85%;height: 600px;" clickable>
-                        <div style="display: flex;flex-direction: row;justify-content: center;">
-                            <img src="./Files/YuanZiE.png" style="height: 400px;width: 100%;object-fit: cover;">
-                        </div>
-                        <div style="display: flex;flex-direction: row;justify-content: center;text-align: center;">
-                            <h1>欢迎来到 元子鹅の网站</h1>
-                        </div>
-                        <div style="display: flex;flex-direction: row;justify-content: center;text-align: center;">
-                            <p1>网站主题升级到MD3啦，感谢你一直以来的支持！<br/>以后常来看看，说不定能发现什么好玩的呢<br/><br/>什么？你说~网站加载太慢了？！<br/>可是我也没钱呢，嘿嘿</p1>
-                        </div>
-                    </mdui-card>
-                    
-                    <p1>这里什么都没有哦~</p1>
-                    -->
-                    <mdui-card variant="elevated" style="width: 85%;height: 300px; display: flex; align-items: center;" clickable href="./Articles/2502106A/index.html">
-                        <div style="display: flex;flex-direction: row;justify-content: left;min-width: 100%;align-items: center; height: 300px;">
-                            <h1>&emsp;</h1>
-                            <img src="./Articles/2502106A/Cover.png" height="240" width="320" style="object-fit: cover; border-radius: 10px;"/>
-                            <h1>&emsp;</h1>
-                            <div style="display: flex;flex-direction: column; justify-content: flex-start; height: 260px;">
-                                <h1>版本发布</h1>
-                                <p1>产品：Original YuanZiEOS 与 GeminiCoreX</p1>
-                                <p1>类型：系统与应用</p1>
-                                <p1>发布日期：2025 年 2 月 6 日</p1>
-                                <p1>文章作者：元子鹅</p1>
-                                <p1>&nbsp;</p1>
-                                <p1>点击卡片查看详情</p1>
-                            </div>
-                        </div>
-                    </mdui-card>
-                </div>
-                <br/><br/>
-            </mdui-layout-main>
-            
-        </mdui-layout>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章 - 元子鹅の网站</title>
+    <link rel="icon" href="./Files/YuanZiE.png">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400;500&display=swap" as="style">
+    <link rel="stylesheet" href="./assets/css/main.css">
+</head>
+<body>
+    <div id="app"></div>
+    <script src="./assets/js/app.js"></script>
+    <script>
+        const main = App.init({ activeNav: 'articles', title: '文章' });
 
-        <script>
-            function navdraOC() {
-                var oc;
-                oc = document.getElementById("navdra").open
-                if (oc == true) {
-                    document.getElementById("navdra").open = false;
-                } else if (oc == false) {
-                    document.getElementById("navdra").open = true;
-                }
+        async function render() {
+            const id = App.getArticleId();
+            if (!id) {
+                main.innerHTML = `<div class="article-detail"><div class="empty-state"><span class="material-symbols-rounded">error_outline</span><p>未指定文章</p><a class="btn btn-filled" href="./articles.html" style="margin-top:16px;">返回文章列表</a></div></div>`;
+                return;
             }
-        </script>
-    </body>    
 
+            const articles = await App.loadArticleIndex();
+            const article = articles.find(a => a.id === id);
+            let content = await App.loadArticleContent(id);
+
+            if (!content) {
+                // Fallback: try old index.html
+                try {
+                    const r = await fetch(`./Articles/${id}/index.html`);
+                    if (r.ok) {
+                        const html = await r.text();
+                        const doc = new DOMParser().parseFromString(html, 'text/html');
+                        const el = doc.querySelector('mdui-layout-main') || doc.querySelector('body');
+                        if (el) { renderArticle(article, el.innerHTML); return; }
+                    }
+                } catch {}
+                main.innerHTML = `<div class="article-detail"><div class="empty-state"><span class="material-symbols-rounded">error_outline</span><p>文章未找到</p><a class="btn btn-filled" href="./articles.html" style="margin-top:16px;">返回文章列表</a></div></div>`;
+                return;
+            }
+            renderArticle(article, content);
+        }
+
+        function renderArticle(article, content) {
+            const t = article ? article.title : '文章';
+            const d = article ? App.formatDate(article.date) : '';
+            const cat = article ? article.category : '';
+            const author = article ? article.author : '';
+            const cover = article ? `./${article.cover}` : '';
+
+            main.innerHTML = `
+                <div class="article-detail fade-in">
+                    ${cover ? `<img class="article-cover" src="${cover}" alt="${App.escapeHtml(t)}" onerror="this.style.display='none'">` : ''}
+                    <h1 class="article-title">${App.escapeHtml(t)}</h1>
+                    <div class="article-meta">
+                        ${d ? `<span>${d}</span>` : ''}
+                        ${cat ? `<span class="chip chip-sm">${App.escapeHtml(cat)}</span>` : ''}
+                        ${author ? `<span>${App.escapeHtml(author)}</span>` : ''}
+                    </div>
+                    <div class="divider mb-24"></div>
+                    <div class="article-content">${content}</div>
+                    <div id="article-nav"></div>
+                    <div style="margin-top:40px;text-align:center;">
+                        <a class="btn btn-text" href="./articles.html">
+                            <span class="material-symbols-rounded">arrow_back</span> 返回文章列表
+                        </a>
+                    </div>
+                    <footer class="footer">&copy; 2025 元子鹅</footer>
+                </div>
+            `;
+
+            // Prev/Next nav
+            App.loadArticleIndex().then(articles => {
+                const idx = articles.findIndex(a => a.id === article.id);
+                const prev = idx < articles.length - 1 ? articles[idx + 1] : null;
+                const next = idx > 0 ? articles[idx - 1] : null;
+                let nav = '<div class="article-nav">';
+                if (prev) nav += `<a href="./article.html?id=${prev.id}"><div class="article-nav-card"><div class="article-nav-label">上一篇</div><div class="article-nav-title">${App.escapeHtml(prev.title)}</div></div></a>`;
+                if (next) nav += `<a href="./article.html?id=${next.id}"><div class="article-nav-card" style="text-align:right;"><div class="article-nav-label">下一篇</div><div class="article-nav-title">${App.escapeHtml(next.title)}</div></div></a>`;
+                nav += '</div>';
+                document.getElementById('article-nav').innerHTML = nav;
+            });
+        }
+
+        render();
+    </script>
+</body>
 </html>

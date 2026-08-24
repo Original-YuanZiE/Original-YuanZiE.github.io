@@ -1,0 +1,221 @@
+/* ===== Admin Styles (aligned with main.css tokens) ===== */
+
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80dvh;
+  padding: 24px;
+}
+
+.login-card {
+  max-width: 420px;
+  width: 100%;
+  padding: 32px 24px;
+  text-align: center;
+  border-radius: var(--md-shape-xl) !important;
+}
+
+.login-card .big-icon {
+  font-size: 48px;
+  color: var(--md-primary);
+  margin-bottom: 16px;
+}
+
+.login-card h1 {
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--md-on-surface);
+  margin-bottom: 8px;
+}
+
+.login-card p {
+  font-size: 14px;
+  color: var(--md-on-surface-variant);
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.login-error {
+  color: var(--md-error);
+  font-size: 14px;
+  margin-top: 12px;
+  display: none;
+}
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.admin-header h1 {
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--md-on-surface);
+}
+
+.admin-stats {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  flex: 1;
+  min-width: 120px;
+  padding: 16px;
+  text-align: center;
+  border-radius: var(--md-shape-lg);
+}
+
+.stat-number {
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--md-primary);
+}
+
+.stat-label {
+  font-size: 14px;
+  color: var(--md-on-surface-variant);
+  margin-top: 4px;
+}
+
+.table-wrapper {
+  border-radius: var(--md-shape-md);
+  overflow: hidden;
+  border: 1px solid var(--md-outline-variant);
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.admin-table th {
+  background-color: var(--md-surface-container);
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--md-on-surface-variant);
+  border-bottom: 1px solid var(--md-outline-variant);
+}
+
+.admin-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--md-outline-variant);
+  font-size: 14px;
+  color: var(--md-on-surface);
+}
+
+.admin-table tr:last-child td { border-bottom: none; }
+.admin-table tr:hover td { background-color: var(--md-surface-container-low); }
+
+.editor-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 600px) {
+  .editor-meta-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.editor-meta-full { grid-column: 1 / -1; }
+
+.editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 8px;
+  background-color: var(--md-surface-container);
+  border-radius: var(--md-shape-sm) var(--md-shape-sm) 0 0;
+  border: 1px solid var(--md-outline-variant);
+  border-bottom: none;
+  align-items: center;
+}
+
+.editor-toolbar .btn-icon {
+  width: 36px;
+  height: 36px;
+}
+
+.editor-toolbar .btn-icon .material-symbols-rounded {
+  font-size: 20px;
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 24px;
+  background-color: var(--md-outline-variant);
+  margin: 0 4px;
+}
+
+.editor-body {
+  display: flex;
+  border: 1px solid var(--md-outline-variant);
+  border-radius: 0 0 var(--md-shape-sm) var(--md-shape-sm);
+  min-height: 400px;
+  overflow: hidden;
+}
+
+.editor-textarea {
+  flex: 1;
+  width: 100%;
+  min-height: 400px;
+  padding: 16px;
+  border: none;
+  outline: none;
+  resize: vertical;
+  font-family: 'Roboto Mono', 'Consolas', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  background-color: var(--md-surface-container-lowest);
+  color: var(--md-on-surface);
+  tab-size: 4;
+}
+
+.editor-textarea::placeholder { color: var(--md-outline); }
+
+.editor-preview {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  background-color: var(--md-surface);
+  border-left: 1px solid var(--md-outline-variant);
+  display: none;
+}
+
+.editor-preview.visible { display: block; }
+
+.cover-upload {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cover-preview {
+  width: 160px;
+  height: 100px;
+  border-radius: var(--md-shape-sm);
+  object-fit: cover;
+  border: 1px solid var(--md-outline-variant);
+  display: none;
+}
+
+.cover-preview.visible { display: block; }
+
+@media (max-width: 768px) {
+  .editor-body { flex-direction: column; }
+  .editor-preview { border-left: none; border-top: 1px solid var(--md-outline-variant); max-height: 300px; }
+  .editor-textarea { min-height: 250px; }
+}

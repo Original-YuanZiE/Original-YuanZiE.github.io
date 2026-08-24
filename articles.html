@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章 - 元子鹅の网站</title>
+    <link rel="icon" href="./Files/YuanZiE.png">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400;500&display=swap" as="style">
+    <link rel="stylesheet" href="./assets/css/main.css">
+</head>
+<body>
+    <div id="app"></div>
+    <script src="./assets/js/app.js"></script>
+    <script>
+        const main = App.init({ activeNav: 'articles' });
+        const CATEGORIES = ['全部', '系统', '应用', '其他'];
+
+        async function renderArticles(filter = '全部') {
+            const articles = await App.loadArticleIndex();
+            const filtered = filter === '全部' ? articles : articles.filter(a => a.category === filter);
+
+            if (!articles.length) {
+                main.innerHTML = `
+                    <div class="page-container fade-in">
+                        <h1 class="section-title mb-16">文章</h1>
+                        <div class="empty-state"><span class="material-symbols-rounded">article</span><p>暂无文章</p></div>
+                        <footer class="footer">&copy; 2025 元子鹅</footer>
+                    </div>
+                `;
+                return;
+            }
+
+            const chips = CATEGORIES.map(cat =>
+                `<button class="chip ${cat === filter ? 'selected' : ''}" onclick="renderArticles('${cat}')">${cat}</button>`
+            ).join('');
+
+            const cards = filtered.map(a => `
+                    <a class="article-card" href="./article.html?id=${a.id}">
+                        <img class="article-card-cover" src="./${a.cover}" alt="${App.escapeHtml(a.title)}" onerror="this.src='./Files/Tips.png'">
+                        <div class="article-card-body">
+                            <div class="article-card-title">${App.escapeHtml(a.title)}</div>
+                            <div class="article-card-summary">${App.escapeHtml(a.summary || '')}</div>
+                            <div class="article-card-meta">
+                                <span>${App.formatDate(a.date)}</span>
+                                ${a.category ? `<span class="chip chip-sm">${App.escapeHtml(a.category)}</span>` : ''}
+                            </div>
+                        </div>
+                    </a>
+            `).join('');
+
+            main.innerHTML = `
+                <div class="page-container fade-in">
+                    <h1 class="section-title mb-16">文章</h1>
+                    <div class="chip-group mb-24">${chips}</div>
+                    <div class="article-grid">${cards}</div>
+                    <footer class="footer">&copy; 2025 元子鹅</footer>
+                </div>
+            `;
+        }
+        renderArticles();
+    </script>
+</body>
+</html>

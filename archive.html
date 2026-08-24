@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>归档 - 元子鹅の网站</title>
+    <link rel="icon" href="./Files/YuanZiE.png">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400;500&display=swap" as="style">
+    <link rel="stylesheet" href="./assets/css/main.css">
+</head>
+<body>
+    <div id="app"></div>
+    <script src="./assets/js/app.js"></script>
+    <script>
+        const main = App.init({ activeNav: 'archive' });
+
+        async function render() {
+            const articles = await App.loadArticleIndex();
+            if (!articles.length) {
+                main.innerHTML = `<div class="page-container"><h1 class="section-title mb-16">归档</h1><div class="empty-state"><span class="material-symbols-rounded">archive</span><p>暂无文章</p></div></div>`;
+                return;
+            }
+
+            const grouped = {};
+            articles.forEach(a => {
+                const y = new Date(a.date + 'T00:00:00').getFullYear();
+                (grouped[y] = grouped[y] || []).push(a);
+            });
+
+            const years = Object.keys(grouped).sort((a, b) => b - a);
+            const sections = years.map(y => {
+                const items = grouped[y].map(a => `
+                    <a class="archive-item" href="./article.html?id=${a.id}">
+                        <span class="archive-item-date">${a.date.slice(5).replace('-', '/')}</span>
+                        <span class="material-symbols-rounded archive-item-icon">article</span>
+                        <span class="archive-item-title">${App.escapeHtml(a.title)}</span>
+                        ${a.category ? `<span class="chip chip-sm" style="margin-left:auto;">${App.escapeHtml(a.category)}</span>` : ''}
+                    </a>
+                `).join('');
+                return `<div class="archive-year"><div class="archive-year-title">${y} 年</div>${items}</div>`;
+            }).join('');
+
+            main.innerHTML = `
+                <div class="page-container fade-in">
+                    <h1 class="section-title">归档</h1>
+                    <p style="font-size:14px;color:var(--md-on-surface-variant);margin-bottom:24px;">共 ${articles.length} 篇文章</p>
+                    ${sections}
+                    <footer class="footer">&copy; 2025 元子鹅</footer>
+                </div>
+            `;
+        }
+        render();
+    </script>
+</body>
+</html>
