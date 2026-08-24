@@ -139,11 +139,12 @@ class GitHubAPI {
             const rawUrl = `https://raw.githubusercontent.com/${this.owner}/${this.repo}/main/${path}`;
             resolve({ success: true, url: rawUrl });
           } else {
-            resolve({ success: false, url: null });
+            console.error('uploadImage API error:', resp.status, data);
+            resolve({ success: false, url: null, error: data.message || `HTTP ${resp.status}` });
           }
         } catch (e) {
           console.error('uploadImage error:', e);
-          resolve({ success: false, url: null });
+          resolve({ success: false, url: null, error: e.message });
         }
       };
       reader.readAsDataURL(file);
@@ -191,7 +192,7 @@ class GitHubAPI {
         const coverPath = `Articles/${article.id}/Cover.png`;
         const uploadResult = await this.uploadImage(coverFile, coverPath);
         if (!uploadResult.success) {
-          return { success: false, message: '封面图上传失败' };
+          return { success: false, message: '封面图上传失败: ' + (uploadResult.error || '未知错误') };
         }
         article.cover = `Articles/${article.id}/Cover.png`;
       }

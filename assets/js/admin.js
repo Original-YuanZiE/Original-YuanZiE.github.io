@@ -269,7 +269,7 @@ const Admin = (() => {
       App.showSnackbar('正在上传...');
       const r = await api.uploadImage(f, `Files/uploads/${Date.now()}_${f.name}`);
       if (r.success) { Editor.insertImage(r.url, f.name.replace(/\.[^.]+$/, '')); App.showSnackbar('上传成功'); }
-      else App.showSnackbar('上传失败', true);
+      else App.showSnackbar('上传失败: ' + (r.error || '未知错误'), true);
     });
     input.click();
   }
