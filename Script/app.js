@@ -91,10 +91,12 @@ const App = (() => {
     }
 
     const { meta, body } = data;
-    const title = meta.title || '无标题';
-    const date = meta.date ? Articles.formatDate(meta.date) : '';
-    const tags = Array.isArray(meta.tags) ? meta.tags : [];
-    const cover = meta.cover || '';
+    // Fall back to index.json data when frontmatter is missing
+    const indexEntry = (await Articles.loadIndex()).find(a => a.id === id) || {};
+    const title = meta.title || indexEntry.title || '无标题';
+    const date = meta.date ? Articles.formatDate(meta.date) : (indexEntry.date ? Articles.formatDate(indexEntry.date) : '');
+    const tags = (Array.isArray(meta.tags) && meta.tags.length) ? meta.tags : (indexEntry.tags || []);
+    const cover = meta.cover || indexEntry.cover || '';
 
     const html = Markdown.render(body, 'Posts/' + id + '/');
 
