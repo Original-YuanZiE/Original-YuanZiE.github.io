@@ -34,7 +34,7 @@ const App = (() => {
           <div class="hero-avatar">
             <img src="Assets/avatar.png" alt="头像" onerror="this.style.display='none'">
           </div>
-          <h1 class="hero-name">元子喵</h1>
+          <h1 class="hero-name">Casseia 元子喵</h1>
           <p class="hero-bio">欢迎来到我的个人博客，这里记录着我的思考与创作。</p>
         </div>
         <div class="section-header">
