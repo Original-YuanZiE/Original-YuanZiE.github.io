@@ -34,7 +34,7 @@ const App = (() => {
           <div class="hero-avatar">
             <img src="Assets/avatar.png" alt="头像" onerror="this.style.display='none'">
           </div>
-          <h1 class="hero-name">元子鹅</h1>
+          <h1 class="hero-name">元子喵</h1>
           <p class="hero-bio">欢迎来到我的个人博客，这里记录着我的思考与创作。</p>
         </div>
         <div class="section-header">
@@ -130,7 +130,7 @@ const App = (() => {
           </div>
           <h1>关于</h1>
           <p style="color: var(--color-ink-secondary); margin-top: 1rem; max-width: 480px; margin-left: auto; margin-right: auto;">
-            这是元子鹅的个人博客。在这里，我分享关于技术、生活和创意的想法。
+            这是元子喵的个人博客。在这里，我分享关于技术、生活和创意的想法。
           </p>
         </div>
       </div>
