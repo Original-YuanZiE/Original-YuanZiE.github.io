@@ -1,0 +1,81 @@
+/* ===== Theme Tokens — Apple Design ===== */
+
+:root {
+  /* Colors — Light */
+  --color-bg: #f5f5f7;
+  --color-surface: #ffffff;
+  --color-ink: #1d1d1f;
+  --color-ink-secondary: #86868b;
+  --color-ink-tertiary: #aeaeb2;
+  --color-accent: #0071e3;
+  --color-accent-hover: #0077ed;
+  --color-accent-bg: rgba(0, 113, 227, 0.08);
+  --color-divider: rgba(0, 0, 0, 0.08);
+  --color-glass: rgba(255, 255, 255, 0.5);
+  --color-glass-border: rgba(255, 255, 255, 0.6);
+  --color-glass-highlight: rgba(255, 255, 255, 0.8);
+  --color-glass-shadow: rgba(0, 0, 0, 0.06);
+  --color-code-bg: #f5f5f7;
+  --color-code-border: rgba(0, 0, 0, 0.06);
+  --color-tag-bg: rgba(0, 0, 0, 0.05);
+  --color-tag-ink: #6e6e73;
+  --color-scrim: rgba(0, 0, 0, 0.3);
+  --color-link: #0066cc;
+  --color-link-hover: #0077ed;
+  --color-blockquote-border: #d2d2d7;
+  --color-blockquote-bg: rgba(0, 0, 0, 0.02);
+  --color-table-header-bg: #f5f5f7;
+  --color-table-border: #d2d2d7;
+  --color-hr: #d2d2d7;
+
+  /* Typography */
+  --font-display: system-ui, -apple-system, 'SF Pro Display', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+  --font-body: system-ui, -apple-system, 'SF Pro Text', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+  --font-mono: 'SF Mono', 'Cascadia Code', 'Fira Code', 'JetBrains Mono', Consolas, monospace;
+
+  /* Spacing */
+  --sidebar-width: 280px;
+  --content-max-width: 720px;
+  --content-padding: 2rem;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --color-bg: #000000;
+  --color-surface: #1c1c1e;
+  --color-ink: #f5f5f7;
+  --color-ink-secondary: #98989d;
+  --color-ink-tertiary: #636366;
+  --color-accent: #0a84ff;
+  --color-accent-hover: #409cff;
+  --color-accent-bg: rgba(10, 132, 255, 0.12);
+  --color-divider: rgba(255, 255, 255, 0.1);
+  --color-glass: rgba(29, 29, 31, 0.5);
+  --color-glass-border: rgba(255, 255, 255, 0.12);
+  --color-glass-highlight: rgba(255, 255, 255, 0.15);
+  --color-glass-shadow: rgba(0, 0, 0, 0.3);
+  --color-code-bg: #1c1c1e;
+  --color-code-border: rgba(255, 255, 255, 0.08);
+  --color-tag-bg: rgba(255, 255, 255, 0.08);
+  --color-tag-ink: #98989d;
+  --color-scrim: rgba(0, 0, 0, 0.6);
+  --color-link: #0a84ff;
+  --color-link-hover: #409cff;
+  --color-blockquote-border: #48484a;
+  --color-blockquote-bg: rgba(255, 255, 255, 0.03);
+  --color-table-header-bg: #1c1c1e;
+  --color-table-border: #38383a;
+  --color-hr: #38383a;
+}

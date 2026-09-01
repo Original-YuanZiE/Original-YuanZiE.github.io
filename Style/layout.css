@@ -1,0 +1,72 @@
+/* ===== Layout: Sidebar + Main ===== */
+
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar — full height, under top bar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-glass);
+  backdrop-filter: blur(30px) saturate(200%);
+  -webkit-backdrop-filter: blur(30px) saturate(200%);
+  border-right: 1px solid var(--color-glass-border);
+  box-shadow: 4px 0 24px var(--color-glass-shadow);
+  z-index: 90;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transform: translateX(-100%);
+  transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+/* Desktop: sidebar visible by default */
+@media (min-width: 1024px) {
+  .sidebar {
+    transform: translateX(0);
+  }
+
+  .main {
+    margin-left: var(--sidebar-width);
+    transition: margin-left 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .sidebar:not(.open) {
+    transform: translateX(-100%);
+  }
+
+  .sidebar:not(.open) ~ .main {
+    margin-left: 0;
+  }
+}
+
+/* Main content */
+.main {
+  flex: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.main-content {
+  flex: 1;
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: var(--content-padding);
+  padding-top: 4.5rem;
+  padding-bottom: 4rem;
+  overflow-x: hidden;
+}

@@ -1,0 +1,10 @@
+[
+  {
+    "id": "hello-world",
+    "title": "测试1",
+    "date": "2025-09-01",
+    "tags": ["博客", "示例", "Markdown"],
+    "summary": "这是一篇示例文章，展示了博客的 Markdown 渲染效果，包括标题、列表、表格、代码块、引用等常见元素。",
+    "cover": "Assets/sample.svg"
+  }
+]

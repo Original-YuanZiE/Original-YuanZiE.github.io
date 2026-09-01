@@ -1,97 +1,125 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>元子鹅の网站</title>
-    <meta name="description" content="元子鹅的个人网站，分享技术与创作。">
-    <meta name="theme-color" content="#6750A4">
-    <link rel="icon" href="./Files/YuanZiE.png">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" as="style">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400;500&display=swap" as="style">
-    <link rel="stylesheet" href="./assets/css/main.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="元子鹅的个人博客">
+  <title>元子鹅的博客</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="Assets/favicon.png">
+
+  <!-- Highlight.js theme (light default, dark overridden below) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github.min.css">
+  <style>
+    [data-theme="dark"] .hljs { color: #c9d1d9; background: var(--color-code-bg); }
+    [data-theme="dark"] .hljs-keyword { color: #ff7b72; }
+    [data-theme="dark"] .hljs-string { color: #a5d6ff; }
+    [data-theme="dark"] .hljs-comment { color: #8b949e; }
+    [data-theme="dark"] .hljs-function { color: #d2a8ff; }
+    [data-theme="dark"] .hljs-number { color: #79c0ff; }
+    [data-theme="dark"] .hljs-title { color: #d2a8ff; }
+    [data-theme="dark"] .hljs-built_in { color: #ffa657; }
+    [data-theme="dark"] .hljs-literal { color: #79c0ff; }
+    [data-theme="dark"] .hljs-params { color: #c9d1d9; }
+    [data-theme="dark"] .hljs-attr { color: #79c0ff; }
+    [data-theme="dark"] .hljs-meta { color: #8b949e; }
+    [data-theme="dark"] .hljs-type { color: #ffa657; }
+    [data-theme="dark"] .hljs-variable { color: #ffa657; }
+  </style>
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="Style/variables.css">
+  <link rel="stylesheet" href="Style/base.css">
+  <link rel="stylesheet" href="Style/layout.css">
+  <link rel="stylesheet" href="Style/components.css">
+  <link rel="stylesheet" href="Style/article.css">
+  <link rel="stylesheet" href="Style/responsive.css">
+
+  <!-- Inline critical: prevent flash of wrong theme -->
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || 'auto';
+      var d;
+      if (t === 'auto') {
+        d = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      } else {
+        d = t;
+      }
+      document.documentElement.setAttribute('data-theme', d);
+    })();
+  </script>
 </head>
 <body>
-    <div id="app"></div>
-    <script src="./assets/js/app.js"></script>
-    <script>
-        const main = App.init({ activeNav: 'home' });
+  <div class="app">
+    <!-- Top bar with blur — contains hamburger and back button -->
+    <div class="top-bar" id="top-bar">
+      <div class="top-bar-inner">
+        <button class="hamburger" id="hamburger" aria-label="打开菜单">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+        <a class="back-btn" id="back-btn" href="#/articles" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          <span>返回列表</span>
+        </a>
+      </div>
+    </div>
 
-        async function render() {
-            const articles = await App.loadArticleIndex();
-            const latest = articles.slice(0, 3);
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-avatar">
+          <img src="Assets/avatar.png" alt="头像" onerror="this.style.display='none'">
+        </div>
+        <div class="sidebar-name">元子鹅</div>
+      </div>
 
-            const latestCards = latest.map(a => `
-                <a class="article-card" href="./article.html?id=${a.id}">
-                    <img class="article-card-cover" src="./${a.cover}" alt="${App.escapeHtml(a.title)}" onerror="this.style.display='none'">
-                    <div class="article-card-body">
-                        <div class="article-card-title">${App.escapeHtml(a.title)}</div>
-                        <div class="article-card-summary">${App.escapeHtml(a.summary || '')}</div>
-                        <div class="article-card-meta">
-                            <span>${App.formatDate(a.date)}</span>
-                            ${a.category ? `<span class="chip chip-sm">${App.escapeHtml(a.category)}</span>` : ''}
-                        </div>
-                    </div>
-                </a>
-            `).join('');
+      <nav class="sidebar-nav">
+        <a class="nav-item" data-route="/" href="#/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>主页</span>
+        </a>
+        <a class="nav-item" data-route="/articles" href="#/articles">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <span>文章</span>
+        </a>
+        <a class="nav-item" data-route="/about" href="#/about">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><circle cx="12" cy="8" r="1" fill="currentColor" stroke="none"/></svg>
+          <span>关于</span>
+        </a>
+      </nav>
 
-            main.innerHTML = `
-                <div class="page-container fade-in">
-                    <!-- Hero -->
-                    <div class="hero card-elevated">
-                        <img class="hero-avatar" src="./Files/YuanZiE.png" alt="元子鹅">
-                        <h1 class="hero-name">欢迎来到 元子鹅の网站</h1>
-                        <p class="hero-desc">
-                            分享技术与创作的小天地<br>
-                            以后常来看看，说不定能发现什么好玩的呢
-                        </p>
-                    </div>
+      <div class="sidebar-footer">
+        <button class="theme-toggle" id="theme-toggle" aria-label="切换主题">
+          <!-- Filled by theme.js -->
+        </button>
+      </div>
+    </aside>
 
-                    <!-- Latest Articles -->
-                    ${latest.length > 0 ? `
-                    <div class="section">
-                        <div class="section-header">
-                            <h2 class="section-title">最新文章</h2>
-                            <a class="btn btn-text" href="./articles.html">
-                                查看全部 <span class="material-symbols-rounded" style="font-size:18px;">arrow_forward</span>
-                            </a>
-                        </div>
-                        <div class="article-grid">
-                            ${latestCards}
-                        </div>
-                    </div>
-                    ` : ''}
+    <!-- Main content -->
+    <main class="main">
+      <div id="app">
+        <!-- Pages rendered here by router -->
+      </div>
+    </main>
+  </div>
 
-                    <!-- Links -->
-                    <div class="section">
-                        <h2 class="section-title mb-16">链接</h2>
-                        <div class="links-grid">
-                            <a class="link-card card-filled" href="https://space.bilibili.com/2120993834" target="_blank" rel="noopener">
-                                <img class="link-card-icon" src="./Files/YZE_Bili.png" alt="Bilibili">
-                                <div class="link-card-text">
-                                    <h3>我的 Bilibili</h3>
-                                    <p>点击跳转到我的 Bilibili 主页</p>
-                                </div>
-                                <span class="material-symbols-rounded link-card-arrow">open_in_new</span>
-                            </a>
-                            <a class="link-card card-filled" href="https://github.com/Original-YuanZiE" target="_blank" rel="noopener">
-                                <div class="link-card-icon-placeholder">
-                                    <span class="material-symbols-rounded">code</span>
-                                </div>
-                                <div class="link-card-text">
-                                    <h3>GitHub</h3>
-                                    <p>查看我的开源项目</p>
-                                </div>
-                                <span class="material-symbols-rounded link-card-arrow">open_in_new</span>
-                            </a>
-                        </div>
-                    </div>
+  <!-- CDN: Markdown parser -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-                    <footer class="footer">&copy; 2025 元子鹅 · Powered by GitHub Pages</footer>
-                </div>
-            `;
-        }
-        render();
-    </script>
+  <!-- CDN: Syntax highlighting -->
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/highlight.min.js"></script>
+
+  <!-- Site scripts -->
+  <script src="Script/theme.js"></script>
+  <script src="Script/router.js"></script>
+  <script src="Script/markdown.js"></script>
+  <script src="Script/articles.js"></script>
+  <script src="Script/sidebar.js"></script>
+  <script src="Script/app.js"></script>
 </body>
 </html>

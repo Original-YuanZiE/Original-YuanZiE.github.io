@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" fill="none">
+  <rect width="400" height="200" rx="12" fill="#f5f5f7"/>
+  <text x="200" y="90" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" font-weight="600" fill="#1d1d1f">示例封面图片</text>
+  <text x="200" y="120" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#86868b">Blog Cover Image</text>
+</svg>
